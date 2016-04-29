@@ -117,15 +117,11 @@
     
     
     CLLocationDistance distance = [firstLoc distanceFromLocation:secondLoc];
-    
     CLLocation *centerLocation = [[CLLocation alloc]initWithLatitude:lat longitude:longitude];
     
     if (CLLocationCoordinate2DIsValid(centerLocation.coordinate)){
-        
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(centerLocation.coordinate, distance,distance);
-        
         [self.mapView setRegion:region animated:YES];
-        
     }
 }
 
