@@ -13,6 +13,7 @@
 		E3824CC11CD3A8650039301A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3824CBF1CD3A8650039301A /* Main.storyboard */; };
 		E3824CC31CD3A8650039301A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3824CC21CD3A8650039301A /* Assets.xcassets */; };
 		E3824CC61CD3A8650039301A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3824CC41CD3A8650039301A /* LaunchScreen.storyboard */; };
+		E3824CCF1CD3ABC30039301A /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3824CCE1CD3ABC30039301A /* AddressViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		E3824CC21CD3A8650039301A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3824CC51CD3A8650039301A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3824CC71CD3A8650039301A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3824CCD1CD3ABC30039301A /* AddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
+		E3824CCE1CD3ABC30039301A /* AddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,10 +61,12 @@
 		E3824CB51CD3A8640039301A /* MuttCutts */ = {
 			isa = PBXGroup;
 			children = (
-				E3824CB91CD3A8650039301A /* AppDelegate.h */,
-				E3824CBA1CD3A8650039301A /* AppDelegate.m */,
+				E3824CCD1CD3ABC30039301A /* AddressViewController.h */,
+				E3824CCE1CD3ABC30039301A /* AddressViewController.m */,
 				E3824CBC1CD3A8650039301A /* ViewController.h */,
 				E3824CBD1CD3A8650039301A /* ViewController.m */,
+				E3824CB91CD3A8650039301A /* AppDelegate.h */,
+				E3824CBA1CD3A8650039301A /* AppDelegate.m */,
 				E3824CBF1CD3A8650039301A /* Main.storyboard */,
 				E3824CC21CD3A8650039301A /* Assets.xcassets */,
 				E3824CC41CD3A8650039301A /* LaunchScreen.storyboard */,
@@ -152,6 +157,7 @@
 				E3824CBE1CD3A8650039301A /* ViewController.m in Sources */,
 				E3824CBB1CD3A8650039301A /* AppDelegate.m in Sources */,
 				E3824CB81CD3A8650039301A /* main.m in Sources */,
+				E3824CCF1CD3ABC30039301A /* AddressViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

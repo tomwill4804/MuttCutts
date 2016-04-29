@@ -7,21 +7,56 @@
 //
 
 #import "ViewController.h"
+#import "AddressViewController.h"
 
-@interface ViewController ()
+@interface ViewController () {
+    
+    NSString *fromAddress;
+    NSString *toAddress;
+    
+    __strong id* address;
+    
+}
 
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    fromAddress = @"from";
+    toAddress = @"to";
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+//
+//  set values array for selector
+//
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([[segue identifier] isEqualToString:@"fromAddress"])
+        address = &fromAddress;
+    if ([[segue identifier] isEqualToString:@"toAddress"])
+        address = &toAddress;
+    
+}
+
+
+//
+//  back from segue build a new entry in the array
+//
+-(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
+    
+    AddressViewController *vc = (AddressViewController *)segue.sourceViewController;
+    
+    *address = [vc.address copy];
+    NSLog(@"%@", fromAddress);
+    NSLog(@"%@", toAddress);
+    
+    
 }
 
 @end
