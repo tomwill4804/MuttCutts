@@ -10,6 +10,8 @@
 
 @interface ViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIButton* fromAddressButton;
+@property (weak, nonatomic) IBOutlet UIButton* toAddressButton;
 
 @end
 

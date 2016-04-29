@@ -15,6 +15,8 @@
     Address *fromAddress;
     Address *toAddress;
     
+    __weak id* buttonAddress;
+    
 }
 
 @end
@@ -38,10 +40,14 @@
     
     AddressViewController *vc = (AddressViewController *)segue.destinationViewController;
     
-    if ([[segue identifier] isEqualToString:@"fromAddress"])
+    if ([[segue identifier] isEqualToString:@"fromAddress"]) {
         vc.address = fromAddress;
-    if ([[segue identifier] isEqualToString:@"toAddress"])
+        buttonAddress = &_fromAddressButton;
+    }
+    if ([[segue identifier] isEqualToString:@"toAddress"]){
         vc.address = toAddress;
+        buttonAddress = &_toAddressButton;
+    }
     
 }
 
@@ -53,8 +59,10 @@
     
     AddressViewController *vc = (AddressViewController *)segue.sourceViewController;
     
-    NSLog(@"%@", fromAddress.city);
-    NSLog(@"%@", toAddress.city);
+    UIButton* button = *buttonAddress;
+    NSString* newAddr = [NSString stringWithFormat:@"%@, %@", vc.address.city, vc.address.state];
+
+    [button setTitle:newAddr forState:UIControlStateNormal];
     
 }
 
