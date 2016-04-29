@@ -64,6 +64,26 @@
 
     [button setTitle:newAddr forState:UIControlStateNormal];
     
+    //
+    //  allocate a geocoder
+    //
+    if(self.geocoder == nil)
+    {
+        self.geocoder = [[CLGeocoder alloc] init];
+    }
+    
+    
+    [self.geocoder geocodeAddressString:newAddr completionHandler:^(NSArray *placemarks, NSError *error) {
+        
+        if(placemarks.count > 0) {
+        
+            CLPlacemark *bestResult = [placemarks objectAtIndex:0];
+            //self.outputLabel.text = placemark.location.description;
+            MKPlacemark *placemark = [[MKPlacemark alloc] initWithPlacemark:bestResult];
+            [self.mapView addAnnotation:placemark];
+        }
+    }];
+    
 }
 
 @end
