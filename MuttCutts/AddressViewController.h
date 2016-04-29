@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Address.h"
 
 @interface AddressViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextField* city;
 @property (weak, nonatomic) IBOutlet UITextField* state;
 
-@property (strong, nonatomic) NSString* address;
+@property (strong, nonatomic) Address* address;
 
 @property (weak, nonatomic) IBOutlet UIButton *okButton;
 

@@ -19,11 +19,15 @@
     
     [super viewDidLoad];
     
+    self.city.text = self.address.city;
+    self.state.text = self.address.state;
+    
 }
 
 -(IBAction)okButtonClicked:(id)sender{
     
-    self.address = [NSString stringWithFormat:@"%@ %@", self.city.text, self.state.text];
+    self.address.city = self.city.text;
+    self.address.state = self.state.text;
     
 }
 

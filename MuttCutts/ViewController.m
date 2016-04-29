@@ -8,13 +8,12 @@
 
 #import "ViewController.h"
 #import "AddressViewController.h"
+#import "Address.h"
 
 @interface ViewController () {
     
-    NSString *fromAddress;
-    NSString *toAddress;
-    
-    __strong id* address;
+    Address *fromAddress;
+    Address *toAddress;
     
 }
 
@@ -26,36 +25,36 @@
     
     [super viewDidLoad];
     
-    fromAddress = @"from";
-    toAddress = @"to";
+    fromAddress = [[Address alloc] init];
+    toAddress = [[Address alloc] init];
     
 }
 
 
 //
-//  set values array for selector
+//  set pointer to address field we want to set when we come back
 //
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
+    AddressViewController *vc = (AddressViewController *)segue.destinationViewController;
+    
     if ([[segue identifier] isEqualToString:@"fromAddress"])
-        address = &fromAddress;
+        vc.address = fromAddress;
     if ([[segue identifier] isEqualToString:@"toAddress"])
-        address = &toAddress;
+        vc.address = toAddress;
     
 }
 
 
 //
-//  back from segue build a new entry in the array
+//  set the right address field
 //
 -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
     
     AddressViewController *vc = (AddressViewController *)segue.sourceViewController;
     
-    *address = [vc.address copy];
-    NSLog(@"%@", fromAddress);
-    NSLog(@"%@", toAddress);
-    
+    NSLog(@"%@", fromAddress.city);
+    NSLog(@"%@", toAddress.city);
     
 }
 
