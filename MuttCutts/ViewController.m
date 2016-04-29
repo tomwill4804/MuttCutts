@@ -96,7 +96,7 @@
             //
             if (fromLocation && toLocation){
                 float distance = [fromLocation distanceFromLocation:toLocation];
-                self.messageLabel.text = [NSString stringWithFormat:@"Distance is %f", distance];
+                self.messageLabel.text = [NSString stringWithFormat:@"Distance is %f miles", distance];
             }
 
         }
