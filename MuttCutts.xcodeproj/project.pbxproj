@@ -15,6 +15,7 @@
 		E3824CC61CD3A8650039301A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3824CC41CD3A8650039301A /* LaunchScreen.storyboard */; };
 		E3824CCF1CD3ABC30039301A /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3824CCE1CD3ABC30039301A /* AddressViewController.m */; };
 		E3824CD21CD3B71D0039301A /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = E3824CD11CD3B71D0039301A /* Address.m */; };
+		E3824CD41CD3C4C90039301A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3824CD31CD3C4C90039301A /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		E3824CCE1CD3ABC30039301A /* AddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressViewController.m; sourceTree = "<group>"; };
 		E3824CD01CD3B71D0039301A /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Address.h; sourceTree = "<group>"; };
 		E3824CD11CD3B71D0039301A /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Address.m; sourceTree = "<group>"; };
+		E3824CD31CD3C4C90039301A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3824CD41CD3C4C90039301A /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,6 +51,7 @@
 		E3824CAA1CD3A8640039301A = {
 			isa = PBXGroup;
 			children = (
+				E3824CD31CD3C4C90039301A /* MapKit.framework */,
 				E3824CB51CD3A8640039301A /* MuttCutts */,
 				E3824CB41CD3A8640039301A /* Products */,
 			);
