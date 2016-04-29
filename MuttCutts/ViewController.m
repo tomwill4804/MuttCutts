@@ -18,7 +18,7 @@
     CLLocation *fromLocation;
     CLLocation *toLocation;
     
-    __weak id* buttonAddress;
+    UIButton* buttonAddress;
     __strong id* locationAddress;
     
 }
@@ -46,13 +46,13 @@
     
     if ([[segue identifier] isEqualToString:@"fromAddress"]) {
         vc.address = fromAddress;
-        buttonAddress = &_fromAddressButton;
+        buttonAddress = self.fromAddressButton;
         locationAddress = &fromLocation;
         
     }
     if ([[segue identifier] isEqualToString:@"toAddress"]){
         vc.address = toAddress;
-        buttonAddress = &_toAddressButton;
+        buttonAddress = self.toAddressButton;
         locationAddress = &toLocation;
     }
     
@@ -66,7 +66,7 @@
     
     AddressViewController *vc = (AddressViewController *)segue.sourceViewController;
     
-    UIButton* button = *buttonAddress;
+    UIButton* button = buttonAddress;
     NSString* newAddr = [NSString stringWithFormat:@"%@, %@", vc.address.city, vc.address.state];
 
     [button setTitle:newAddr forState:UIControlStateNormal];
@@ -92,11 +92,12 @@
             *locationAddress = bestResult.location;
             
             //
-            //  see if we can calc distnce
+            //  see if we can calc distnce and zoom
             //
             if (fromLocation && toLocation){
-                float distance = [fromLocation distanceFromLocation:toLocation];
-                self.messageLabel.text = [NSString stringWithFormat:@"Distance is %f miles", distance];
+                float distance = [fromLocation distanceFromLocation:toLocation] * 0.000621371192;
+                [self zoomMapToRegionEncapsulatingLocation:fromLocation andLocation:toLocation];
+                self.messageLabel.text = [NSString stringWithFormat:@"Distance is %g miles", distance];
             }
 
         }
@@ -104,5 +105,29 @@
     
     
 }
+
+//
+//  zoom to two locations on a map
+//
+-(void)zoomMapToRegionEncapsulatingLocation:(CLLocation*)firstLoc andLocation:(CLLocation*)secondLoc{
+    
+    float lat =(firstLoc.coordinate.latitude + secondLoc.coordinate.latitude) /2;
+    
+    float longitude = (firstLoc.coordinate.longitude + secondLoc.coordinate.longitude) /2;
+    
+    
+    CLLocationDistance distance = [firstLoc distanceFromLocation:secondLoc];
+    
+    CLLocation *centerLocation = [[CLLocation alloc]initWithLatitude:lat longitude:longitude];
+    
+    if (CLLocationCoordinate2DIsValid(centerLocation.coordinate)){
+        
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(centerLocation.coordinate, distance,distance);
+        
+        [self.mapView setRegion:region animated:YES];
+        
+    }
+}
+
 
 @end

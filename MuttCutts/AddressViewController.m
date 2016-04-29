@@ -22,6 +22,8 @@
     self.city.text = self.address.city;
     self.state.text = self.address.state;
     
+    [self.city becomeFirstResponder];
+    
 }
 
 -(IBAction)okButtonClicked:(id)sender{
