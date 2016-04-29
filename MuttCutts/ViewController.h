@@ -13,6 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton* fromAddressButton;
 @property (weak, nonatomic) IBOutlet UIButton* toAddressButton;
+@property (weak, nonatomic) IBOutlet UILabel* messageLabel;
 
 @property (weak, nonatomic) IBOutlet MKMapView* mapView;
 @property (strong, nonatomic) CLGeocoder *geocoder;

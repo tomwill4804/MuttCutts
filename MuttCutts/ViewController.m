@@ -15,7 +15,11 @@
     Address *fromAddress;
     Address *toAddress;
     
+    CLLocation *fromLocation;
+    CLLocation *toLocation;
+    
     __weak id* buttonAddress;
+    __strong id* locationAddress;
     
 }
 
@@ -43,10 +47,13 @@
     if ([[segue identifier] isEqualToString:@"fromAddress"]) {
         vc.address = fromAddress;
         buttonAddress = &_fromAddressButton;
+        locationAddress = &fromLocation;
+        
     }
     if ([[segue identifier] isEqualToString:@"toAddress"]){
         vc.address = toAddress;
         buttonAddress = &_toAddressButton;
+        locationAddress = &toLocation;
     }
     
 }
@@ -82,9 +89,19 @@
             CLPlacemark *bestResult = [placemarks objectAtIndex:0];
             MKPlacemark *placemark = [[MKPlacemark alloc] initWithPlacemark:bestResult];
             [self.mapView addAnnotation:placemark];
+            *locationAddress = bestResult.location;
             
+            //
+            //  see if we can calc distnce
+            //
+            if (fromLocation && toLocation){
+                float distance = [fromLocation distanceFromLocation:toLocation];
+                self.messageLabel.text = [NSString stringWithFormat:@"Distance is %f", distance];
+            }
+
         }
     }];
+    
     
 }
 

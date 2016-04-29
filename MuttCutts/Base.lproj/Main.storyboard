@@ -95,6 +95,7 @@
                     <connections>
                         <outlet property="fromAddressButton" destination="Kac-9b-TzR" id="wUy-jk-usf"/>
                         <outlet property="mapView" destination="kDw-gL-rSQ" id="ZXz-rB-GAw"/>
+                        <outlet property="messageLabel" destination="Pjh-Hh-8d8" id="OcC-5Z-XbR"/>
                         <outlet property="toAddressButton" destination="eaz-14-fgb" id="epA-8j-oq3"/>
                     </connections>
                 </viewController>
