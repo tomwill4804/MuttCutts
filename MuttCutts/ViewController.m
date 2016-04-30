@@ -135,7 +135,7 @@
 
 
 //
-//  calc directions from two points
+//  generate directions from two points
 //
 -(void)directions:(CLLocation*)firstLoc andLocation:(CLLocation*)secondLoc{
 
@@ -186,6 +186,20 @@
     renderer.strokeColor = [UIColor blueColor];
     renderer.lineWidth = 5.0;
     return renderer;
+}
+
+-(IBAction)clearButtonClicked:(id)sender{
+    
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    
+    for (id<MKOverlay> overlayToRemove in self.mapView.overlays)
+    {
+        if ([overlayToRemove isKindOfClass:[MKPolyline class]])
+        {
+            [self.mapView removeOverlay:overlayToRemove];
+        }
+    }
+    
 }
 
 @end

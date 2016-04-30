@@ -59,12 +59,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kDw-gL-rSQ">
-                                <rect key="frame" x="20" y="179" width="560" height="401"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="JtK-qN-VmQ"/>
-                                </connections>
-                            </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pjh-Hh-8d8">
                                 <rect key="frame" x="22" y="150" width="558" height="21"/>
                                 <constraints>
@@ -74,6 +68,19 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qMd-Gy-mz5">
+                                <rect key="frame" x="529" y="150" width="46" height="30"/>
+                                <state key="normal" title="Clear"/>
+                                <connections>
+                                    <action selector="clearButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W8N-XI-XTf"/>
+                                </connections>
+                            </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kDw-gL-rSQ">
+                                <rect key="frame" x="20" y="179" width="560" height="401"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="JtK-qN-VmQ"/>
+                                </connections>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -92,8 +99,10 @@
                             <constraint firstItem="kDw-gL-rSQ" firstAttribute="top" secondItem="Pjh-Hh-8d8" secondAttribute="bottom" constant="8" symbolic="YES" id="d2Y-us-rlx"/>
                             <constraint firstItem="qg5-q3-s1x" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ddq-QB-mTb"/>
                             <constraint firstItem="Pjh-Hh-8d8" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="dgN-Q9-ets"/>
+                            <constraint firstItem="qMd-Gy-mz5" firstAttribute="trailing" secondItem="kDw-gL-rSQ" secondAttribute="trailing" id="dqd-ab-7q3"/>
                             <constraint firstItem="Pjh-Hh-8d8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="2" id="eG9-0F-ldQ"/>
                             <constraint firstItem="kDw-gL-rSQ" firstAttribute="top" secondItem="eaz-14-fgb" secondAttribute="bottom" constant="13" id="hds-4h-9Q6"/>
+                            <constraint firstItem="qMd-Gy-mz5" firstAttribute="top" secondItem="Pjh-Hh-8d8" secondAttribute="top" id="q07-YU-9aP"/>
                             <constraint firstItem="eaz-14-fgb" firstAttribute="width" secondItem="kDw-gL-rSQ" secondAttribute="width" id="qBC-vu-Xlu"/>
                             <constraint firstAttribute="bottom" secondItem="kDw-gL-rSQ" secondAttribute="bottom" constant="20" symbolic="YES" id="rhe-SR-Awi"/>
                             <constraint firstItem="Kac-9b-TzR" firstAttribute="leading" secondItem="kDw-gL-rSQ" secondAttribute="trailing" constant="-499" id="xUT-La-FVN"/>
@@ -132,17 +141,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Street" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cGO-v8-Uaf">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Street" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cGO-v8-Uaf">
                                 <rect key="frame" x="47" y="85" width="392" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X9y-4Q-P7k">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X9y-4Q-P7k">
                                 <rect key="frame" x="47" y="123" width="255" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KIv-Rz-f1i">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KIv-Rz-f1i">
                                 <rect key="frame" x="47" y="161" width="143" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
