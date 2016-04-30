@@ -94,7 +94,7 @@
             *locationAddress = bestResult.location;
             
             //
-            //  see if we can calc distnce and zoom
+            //  see if we can calc distnce, zoom, and route
             //
             if (fromLocation && toLocation){
                 
@@ -131,6 +131,10 @@
     }
 }
 
+
+//
+//  calc directions from two points
+//
 -(void)directions:(CLLocation*)firstLoc andLocation:(CLLocation*)secondLoc{
 
     MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
@@ -157,6 +161,10 @@
 }
 
 
+
+//
+//  update the map for the directions
+//
 -(void)showRoute:(MKDirectionsResponse *)response{
 
     for (MKRoute *route in response.routes)
@@ -165,6 +173,10 @@
     }
 }
 
+
+//
+//  draw the line for the map route
+//
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay
 {
     MKPolylineRenderer *renderer =
