@@ -9,8 +9,6 @@
 #import "ViewController.h"
 #import "AddressViewController.h"
 #import "Address.h"
-#import <CoreLocation/CoreLocation.h>
-#import <AddressBook/AddressBook.h>
 
 @interface ViewController () {
     
@@ -69,45 +67,49 @@
     AddressViewController *vc = (AddressViewController *)segue.sourceViewController;
     
     UIButton* button = buttonAddress;
-    NSString* newAddr = [NSString stringWithFormat:@"%@, %@", vc.address.city, vc.address.state];
-
-    [button setTitle:newAddr forState:UIControlStateNormal];
-    
-    //
-    //  allocate a geocoder
-    //
-    if(self.geocoder == nil)
-    {
-        self.geocoder = [[CLGeocoder alloc] init];
-    }
-    
-    //
-    //  find location and annotate it
-    //
-    [self.geocoder geocodeAddressString:newAddr completionHandler:^(NSArray *placemarks, NSError *error) {
+    if (vc.address.updated && vc.address.city.length > 0) {
+        NSString* newAddr = [NSString stringWithFormat:@"%@ %@, %@",
+                             vc.address.street, vc.address.city, vc.address.state];
         
-        if(placemarks.count > 0) {
+        [button setTitle:newAddr forState:UIControlStateNormal];
         
-            CLPlacemark *bestResult = [placemarks objectAtIndex:0];
-            MKPlacemark *placemark = [[MKPlacemark alloc] initWithPlacemark:bestResult];
-            [self.mapView addAnnotation:placemark];
-            *locationAddress = bestResult.location;
+        //
+        //  allocate a geocoder
+        //
+        if(self.geocoder == nil)
+        {
+            self.geocoder = [[CLGeocoder alloc] init];
+        }
+        
+        //
+        //  find location and annotate it
+        //
+        [self.geocoder geocodeAddressString:newAddr completionHandler:^(NSArray *placemarks, NSError *error) {
             
-            //
-            //  see if we can calc distnce, zoom, and route
-            //
-            if (fromLocation && toLocation){
+            if(placemarks.count > 0) {
                 
-                float distance = [fromLocation distanceFromLocation:toLocation] * 0.000621371192;
-                self.messageLabel.text = [NSString stringWithFormat:@"Distance is %g miles", distance];
+                CLPlacemark *bestResult = [placemarks objectAtIndex:0];
+                MKPlacemark *placemark = [[MKPlacemark alloc] initWithPlacemark:bestResult];
+                [self.mapView addAnnotation:placemark];
+                *locationAddress = bestResult.location;
                 
-                [self zoomMapToRegionEncapsulatingLocation:fromLocation andLocation:toLocation];
-                [self directions:fromLocation andLocation:toLocation];
+                //
+                //  see if we can calc distnce, zoom, and route
+                //
+                if (fromLocation && toLocation){
+                    
+                    float distance = [fromLocation distanceFromLocation:toLocation] * 0.000621371192;
+                    self.messageLabel.text = [NSString stringWithFormat:@"Distance is %g miles", distance];
+                    
+                    [self zoomMapToRegionEncapsulatingLocation:fromLocation andLocation:toLocation];
+                    [self directions:fromLocation andLocation:toLocation];
+                    
+                }
                 
             }
-
-        }
-    }];
+        }];
+        
+    }
     
     
 }

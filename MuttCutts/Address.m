@@ -10,4 +10,15 @@
 
 @implementation Address
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _street = @"";
+        _city = @"";
+        _state = @"";
+    }
+    return self;
+}
+
 @end

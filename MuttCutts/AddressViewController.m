@@ -19,17 +19,21 @@
     
     [super viewDidLoad];
     
+    self.street.text = self.address.street;
     self.city.text = self.address.city;
     self.state.text = self.address.state;
+    self.address.updated = NO;
     
-    [self.city becomeFirstResponder];
+    [self.street becomeFirstResponder];
     
 }
 
 -(IBAction)okButtonClicked:(id)sender{
     
+    self.address.street = self.street.text;
     self.address.city = self.city.text;
     self.address.state = self.state.text;
+    self.address.updated = YES;
     
 }
 

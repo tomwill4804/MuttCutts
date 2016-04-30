@@ -10,8 +10,9 @@
 
 @interface Address : NSObject
 
+@property (strong, nonatomic) NSString* street;
 @property (strong, nonatomic) NSString* city;
 @property (strong, nonatomic) NSString* state;
-
+@property                     BOOL      updated;
 
 @end

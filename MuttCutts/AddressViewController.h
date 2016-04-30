@@ -11,6 +11,7 @@
 
 @interface AddressViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITextField* street;
 @property (weak, nonatomic) IBOutlet UITextField* city;
 @property (weak, nonatomic) IBOutlet UITextField* state;
 
