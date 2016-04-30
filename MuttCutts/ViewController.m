@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "AddressViewController.h"
 #import "Address.h"
+#import <CoreLocation/CoreLocation.h>
+#import <AddressBook/AddressBook.h>
 
 @interface ViewController () {
     
@@ -95,9 +97,13 @@
             //  see if we can calc distnce and zoom
             //
             if (fromLocation && toLocation){
+                
                 float distance = [fromLocation distanceFromLocation:toLocation] * 0.000621371192;
-                [self zoomMapToRegionEncapsulatingLocation:fromLocation andLocation:toLocation];
                 self.messageLabel.text = [NSString stringWithFormat:@"Distance is %g miles", distance];
+                
+                [self zoomMapToRegionEncapsulatingLocation:fromLocation andLocation:toLocation];
+                [self directions:fromLocation andLocation:toLocation];
+                
             }
 
         }
@@ -125,5 +131,47 @@
     }
 }
 
+-(void)directions:(CLLocation*)firstLoc andLocation:(CLLocation*)secondLoc{
+
+    MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
+    
+    MKPlacemark* placemark1 = [[MKPlacemark alloc] initWithCoordinate:firstLoc.coordinate addressDictionary:nil];
+    request.source = [[MKMapItem alloc] initWithPlacemark:placemark1];
+
+    MKPlacemark* placemark2 = [[MKPlacemark alloc] initWithCoordinate:secondLoc.coordinate addressDictionary:nil];
+    request.destination = [[MKMapItem alloc] initWithPlacemark:placemark2];
+
+    request.requestsAlternateRoutes = NO;
+    request.transportType = MKDirectionsTransportTypeAutomobile;
+    MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
+
+    [directions calculateDirectionsWithCompletionHandler:
+        ^(MKDirectionsResponse *response, NSError *error) {
+            if (error) {
+                NSLog(@"%@", [error localizedDescription]);
+            } else {
+                [self showRoute:response];
+            }
+        }];
+
+}
+
+
+-(void)showRoute:(MKDirectionsResponse *)response{
+
+    for (MKRoute *route in response.routes)
+    {
+        [self.mapView addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
+    }
+}
+
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay
+{
+    MKPolylineRenderer *renderer =
+    [[MKPolylineRenderer alloc] initWithOverlay:overlay];
+    renderer.strokeColor = [UIColor blueColor];
+    renderer.lineWidth = 5.0;
+    return renderer;
+}
 
 @end

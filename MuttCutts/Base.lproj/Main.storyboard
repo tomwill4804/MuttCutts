@@ -56,6 +56,9 @@
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kDw-gL-rSQ">
                                 <rect key="frame" x="20" y="179" width="560" height="401"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="JtK-qN-VmQ"/>
+                                </connections>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pjh-Hh-8d8">
                                 <rect key="frame" x="22" y="150" width="558" height="21"/>
