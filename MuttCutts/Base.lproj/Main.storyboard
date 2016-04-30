@@ -79,7 +79,7 @@
                                 <rect key="frame" x="451" y="150" width="70" height="30"/>
                                 <state key="normal" title="Directions"/>
                                 <connections>
-                                    <segue destination="0XD-pn-UGD" kind="popoverPresentation" identifier="directions" popoverAnchorView="p3I-5Q-OUE" id="6fS-AW-KaB">
+                                    <segue destination="LnE-iI-rzP" kind="popoverPresentation" identifier="directions" popoverAnchorView="p3I-5Q-OUE" id="KeV-TT-oWR">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
                                 </connections>
@@ -143,32 +143,50 @@
             <point key="canvasLocation" x="629" y="127"/>
         </scene>
         <!--Directions View Controller-->
-        <scene sceneID="MBB-Cg-8LO">
+        <scene sceneID="2xq-e1-ixU">
             <objects>
-                <tableViewController id="0XD-pn-UGD" customClass="DirectionsViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="yij-o6-c4f">
+                <viewController id="LnE-iI-rzP" customClass="DirectionsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZGb-DM-1b7"/>
+                        <viewControllerLayoutGuide type="bottom" id="jB4-ts-z7m"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="puR-e8-SbV">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9l0-SY-BhG">
+                                <rect key="frame" x="20" y="86" width="560" height="208"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dirList" id="y2r-BC-T4I">
+                                        <rect key="frame" x="0.0" y="28" width="560" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y2r-BC-T4I" id="og7-s8-NAt">
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="LnE-iI-rzP" id="4hp-kz-dsm"/>
+                                    <outlet property="delegate" destination="LnE-iI-rzP" id="uAi-me-Ih7"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ILx-KT-h3i">
+                                <rect key="frame" x="28" y="42" width="30" height="30"/>
+                                <state key="normal" title="OK"/>
+                                <connections>
+                                    <segue destination="vq4-9A-d07" kind="unwind" identifier="directions" unwindAction="prepareForUnwind:" id="cUJ-8s-FiV"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dirList" id="4sm-9V-VDt">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4sm-9V-VDt" id="z4u-6T-yxO">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="0XD-pn-UGD" id="qOX-X1-pgb"/>
-                            <outlet property="delegate" destination="0XD-pn-UGD" id="tVG-1e-YnV"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Lbu-L5-IJn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="orF-xi-F9K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="vq4-9A-d07" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="451" y="851"/>
+            <point key="canvasLocation" x="421" y="961"/>
         </scene>
         <!--Address View Controller-->
         <scene sceneID="vHb-s3-KrN">
@@ -179,7 +197,7 @@
                         <viewControllerLayoutGuide type="bottom" id="bjO-RQ-YYp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uMJ-U0-KZy">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Street" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cGO-v8-Uaf">

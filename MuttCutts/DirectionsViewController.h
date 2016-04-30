@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DirectionsViewController : UITableViewController
+@interface DirectionsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) NSMutableArray *directionsList;
 
