@@ -167,7 +167,13 @@
             if (error) {
                 NSLog(@"%@", [error localizedDescription]);
             } else {
+                
+                MKRoute* route = response.routes[0];
+                float distance = route.distance * 0.000621371192;
+                self.messageLabel.text = [NSString stringWithFormat:@"Drive is %g miles", distance];
+
                 [self showRoute:response];
+                
             }
         }];
 
@@ -207,6 +213,10 @@
     return renderer;
 }
 
+
+//
+//  clear the map
+//
 -(IBAction)clearButtonClicked:(id)sender{
     
     directionsList = nil;
@@ -223,9 +233,5 @@
     
 }
 
--(IBAction)directionsButtonPushed:(id)sender{
-    
-    
-}
 
 @end
