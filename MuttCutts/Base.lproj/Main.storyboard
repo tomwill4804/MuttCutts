@@ -59,8 +59,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pjh-Hh-8d8">
-                                <rect key="frame" x="22" y="150" width="558" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pjh-Hh-8d8">
+                                <rect key="frame" x="22" y="150" width="401" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="SIG-ba-cB8"/>
                                 </constraints>
@@ -73,6 +73,15 @@
                                 <state key="normal" title="Clear"/>
                                 <connections>
                                     <action selector="clearButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W8N-XI-XTf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p3I-5Q-OUE">
+                                <rect key="frame" x="451" y="150" width="70" height="30"/>
+                                <state key="normal" title="Directions"/>
+                                <connections>
+                                    <segue destination="0XD-pn-UGD" kind="popoverPresentation" identifier="directions" popoverAnchorView="p3I-5Q-OUE" id="6fS-AW-KaB">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
                                 </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kDw-gL-rSQ">
@@ -92,6 +101,7 @@
                             <constraint firstItem="eaz-14-fgb" firstAttribute="top" secondItem="Kac-9b-TzR" secondAttribute="bottom" constant="4" id="I2l-HI-mSS"/>
                             <constraint firstItem="eaz-14-fgb" firstAttribute="trailing" secondItem="kDw-gL-rSQ" secondAttribute="trailing" id="Ifa-Dn-pFN"/>
                             <constraint firstItem="Kac-9b-TzR" firstAttribute="trailing" secondItem="eaz-14-fgb" secondAttribute="trailing" id="O8Q-g0-FMS"/>
+                            <constraint firstItem="p3I-5Q-OUE" firstAttribute="top" secondItem="Pjh-Hh-8d8" secondAttribute="top" id="Oo7-g5-rxY"/>
                             <constraint firstItem="qg5-q3-s1x" firstAttribute="leading" secondItem="cZK-u9-wyB" secondAttribute="leading" id="SFL-wt-2nD"/>
                             <constraint firstItem="qg5-q3-s1x" firstAttribute="centerY" secondItem="Kac-9b-TzR" secondAttribute="centerY" id="TIO-Iw-TWj"/>
                             <constraint firstItem="Kac-9b-TzR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="19" id="ZiT-hb-Ybi"/>
@@ -105,7 +115,9 @@
                             <constraint firstItem="qMd-Gy-mz5" firstAttribute="top" secondItem="Pjh-Hh-8d8" secondAttribute="top" id="q07-YU-9aP"/>
                             <constraint firstItem="eaz-14-fgb" firstAttribute="width" secondItem="kDw-gL-rSQ" secondAttribute="width" id="qBC-vu-Xlu"/>
                             <constraint firstAttribute="bottom" secondItem="kDw-gL-rSQ" secondAttribute="bottom" constant="20" symbolic="YES" id="rhe-SR-Awi"/>
+                            <constraint firstItem="qMd-Gy-mz5" firstAttribute="leading" secondItem="p3I-5Q-OUE" secondAttribute="trailing" constant="8" id="wyX-6W-Mdj"/>
                             <constraint firstItem="Kac-9b-TzR" firstAttribute="leading" secondItem="kDw-gL-rSQ" secondAttribute="trailing" constant="-499" id="xUT-La-FVN"/>
+                            <constraint firstItem="p3I-5Q-OUE" firstAttribute="top" secondItem="eaz-14-fgb" secondAttribute="bottom" constant="3" id="xpN-vW-lRd"/>
                             <constraint firstItem="cZK-u9-wyB" firstAttribute="leading" secondItem="kDw-gL-rSQ" secondAttribute="leading" id="zhI-Rg-4K2"/>
                         </constraints>
                         <variation key="default">
@@ -113,6 +125,7 @@
                                 <exclude reference="xUT-La-FVN"/>
                                 <exclude reference="qBC-vu-Xlu"/>
                                 <exclude reference="hds-4h-9Q6"/>
+                                <exclude reference="xpN-vW-lRd"/>
                             </mask>
                         </variation>
                     </view>
@@ -128,6 +141,34 @@
                 <tapGestureRecognizer id="7fr-xy-Spd"/>
             </objects>
             <point key="canvasLocation" x="629" y="127"/>
+        </scene>
+        <!--Directions View Controller-->
+        <scene sceneID="MBB-Cg-8LO">
+            <objects>
+                <tableViewController id="0XD-pn-UGD" customClass="DirectionsViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="yij-o6-c4f">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dirList" id="4sm-9V-VDt">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4sm-9V-VDt" id="z4u-6T-yxO">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="0XD-pn-UGD" id="qOX-X1-pgb"/>
+                            <outlet property="delegate" destination="0XD-pn-UGD" id="tVG-1e-YnV"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lbu-L5-IJn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="451" y="851"/>
         </scene>
         <!--Address View Controller-->
         <scene sceneID="vHb-s3-KrN">
@@ -168,7 +209,7 @@
                                 <state key="normal" title="OK"/>
                                 <connections>
                                     <action selector="okButtonClicked:" destination="Tbh-Dc-Sgr" eventType="touchUpInside" id="ji9-fC-JJZ"/>
-                                    <segue destination="3O2-4f-YlN" kind="unwind" unwindAction="prepareForUnwind:" id="ncl-lT-Xi7"/>
+                                    <segue destination="3O2-4f-YlN" kind="unwind" identifier="address" unwindAction="prepareForUnwind:" id="ncl-lT-Xi7"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2e1-xv-C5K">
@@ -176,7 +217,7 @@
                                 <state key="normal" title="Cancel"/>
                                 <connections>
                                     <action selector="cancelButtonClicked:" destination="Tbh-Dc-Sgr" eventType="touchUpInside" id="FwJ-oD-fq0"/>
-                                    <segue destination="3O2-4f-YlN" kind="unwind" unwindAction="prepareForUnwind:" id="j30-h7-5zp"/>
+                                    <segue destination="3O2-4f-YlN" kind="unwind" identifier="address" unwindAction="prepareForUnwind:" id="j30-h7-5zp"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -214,6 +255,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="N9f-bu-tMf"/>
+        <segue reference="XjV-9b-3Du"/>
     </inferredMetricsTieBreakers>
 </document>

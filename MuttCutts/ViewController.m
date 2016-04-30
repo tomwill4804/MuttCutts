@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "AddressViewController.h"
+#import "DirectionsViewController.h"
 #import "Address.h"
 
 @interface ViewController () {
@@ -20,6 +21,8 @@
     
     UIButton* buttonAddress;
     __strong id* locationAddress;
+    
+    NSMutableArray* directionsList;
     
 }
 
@@ -42,18 +45,23 @@
 //
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    AddressViewController *vc = (AddressViewController *)segue.destinationViewController;
     
     if ([[segue identifier] isEqualToString:@"fromAddress"]) {
+        AddressViewController *vc = (AddressViewController *)segue.destinationViewController;
         vc.address = fromAddress;
         buttonAddress = self.fromAddressButton;
         locationAddress = &fromLocation;
         
     }
-    if ([[segue identifier] isEqualToString:@"toAddress"]){
+    else if ([[segue identifier] isEqualToString:@"toAddress"]){
+        AddressViewController *vc = (AddressViewController *)segue.destinationViewController;
         vc.address = toAddress;
         buttonAddress = self.toAddressButton;
         locationAddress = &toLocation;
+    }
+    else if ([[segue identifier] isEqualToString:@"directions"]){
+        DirectionsViewController *vc = (DirectionsViewController *)segue.destinationViewController;
+        vc.directionsList = directionsList;
     }
     
 }
@@ -63,6 +71,9 @@
 //  set the right address field
 //
 -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
+    
+    if ([[segue identifier] isEqualToString:@"directions"])
+        return;
     
     AddressViewController *vc = (AddressViewController *)segue.sourceViewController;
     
@@ -172,7 +183,15 @@
     for (MKRoute *route in response.routes)
     {
         [self.mapView addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
+        
+        directionsList = [[NSMutableArray alloc] init];
+        for (MKRouteStep *step in route.steps)
+        {
+            [directionsList addObject:step.instructions];
+        }
+        
     }
+    
 }
 
 
@@ -190,6 +209,8 @@
 
 -(IBAction)clearButtonClicked:(id)sender{
     
+    directionsList = nil;
+    
     [self.mapView removeAnnotations:self.mapView.annotations];
     
     for (id<MKOverlay> overlayToRemove in self.mapView.overlays)
@@ -199,6 +220,11 @@
             [self.mapView removeOverlay:overlayToRemove];
         }
     }
+    
+}
+
+-(IBAction)directionsButtonPushed:(id)sender{
+    
     
 }
 
