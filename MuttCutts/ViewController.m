@@ -166,6 +166,9 @@
     request.transportType = MKDirectionsTransportTypeAutomobile;
     MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
 
+    __weak ViewController* weakSelf;
+    weakSelf = self;
+
     [directions calculateDirectionsWithCompletionHandler:
         ^(MKDirectionsResponse *response, NSError *error) {
             if (error) {
@@ -174,9 +177,9 @@
                 
                 MKRoute* route = response.routes[0];
                 float distance = route.distance * 0.000621371192;
-                self.messageLabel.text = [NSString stringWithFormat:@"Drive is %g miles", distance];
+                weakSelf.messageLabel.text = [NSString stringWithFormat:@"Drive is %g miles", distance];
 
-                [self showRoute:response];
+                [weakSelf showRoute:response];
                 
             }
         }];
