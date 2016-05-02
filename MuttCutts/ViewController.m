@@ -96,13 +96,16 @@
         //
         //  find location and annotate it
         //
+        __weak ViewController* weakSelf;
+        weakSelf = self;
+        
         [self.geocoder geocodeAddressString:newAddr completionHandler:^(NSArray *placemarks, NSError *error) {
             
             if(placemarks.count > 0) {
                 
                 CLPlacemark *bestResult = [placemarks objectAtIndex:0];
                 MKPlacemark *placemark = [[MKPlacemark alloc] initWithPlacemark:bestResult];
-                [self.mapView addAnnotation:placemark];
+                [weakSelf.mapView addAnnotation:placemark];
                 *locationAddress = bestResult.location;
                 
                 //
@@ -111,10 +114,10 @@
                 if (fromLocation && toLocation){
                     
                     float distance = [fromLocation distanceFromLocation:toLocation] * 0.000621371192;
-                    self.messageLabel.text = [NSString stringWithFormat:@"Distance is %g miles", distance];
+                    weakSelf.messageLabel.text = [NSString stringWithFormat:@"Distance is %g miles", distance];
                     
-                    [self zoomMapToRegionEncapsulatingLocation:fromLocation andLocation:toLocation];
-                    [self directions:fromLocation andLocation:toLocation];
+                    [weakSelf zoomMapToRegionEncapsulatingLocation:fromLocation andLocation:toLocation];
+                    [weakSelf directions:fromLocation andLocation:toLocation];
                     
                 }
                 
@@ -238,8 +241,8 @@
     
     return UIModalPresentationNone;
     
-    
 }
+
 
 
 @end
