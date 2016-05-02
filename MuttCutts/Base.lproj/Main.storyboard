@@ -87,7 +87,7 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kDw-gL-rSQ">
                                 <rect key="frame" x="20" y="179" width="560" height="401"/>
                                 <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="JtK-qN-VmQ"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="C3I-PY-NLr"/>
                                 </connections>
                             </mapView>
                         </subviews>
@@ -268,6 +268,10 @@
                             <constraint firstItem="X9y-4Q-P7k" firstAttribute="top" secondItem="uMJ-U0-KZy" secondAttribute="top" constant="123" id="yL1-XY-Mr6"/>
                         </constraints>
                     </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="400" height="250"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="400"/>
                     <connections>
                         <outlet property="city" destination="X9y-4Q-P7k" id="IY7-wz-b9P"/>
                         <outlet property="okButton" destination="acZ-G5-To7" id="OkP-d9-E5d"/>
@@ -278,7 +282,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gh0-iP-jZ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="3O2-4f-YlN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1456" y="127"/>
+            <point key="canvasLocation" x="1397" y="82"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MqK-k4-fYq">

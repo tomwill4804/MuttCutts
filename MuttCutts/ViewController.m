@@ -11,7 +11,7 @@
 #import "DirectionsViewController.h"
 #import "Address.h"
 
-@interface ViewController () {
+@interface ViewController ()<UIPopoverPresentationControllerDelegate> {
     
     Address *fromAddress;
     Address *toAddress;
@@ -58,6 +58,7 @@
         vc.address = toAddress;
         buttonAddress = self.toAddressButton;
         locationAddress = &toLocation;
+        vc.popoverPresentationController.delegate = self;
     }
     else if ([[segue identifier] isEqualToString:@"directions"]){
         DirectionsViewController *vc = (DirectionsViewController *)segue.destinationViewController;
@@ -230,6 +231,13 @@
             [self.mapView removeOverlay:overlayToRemove];
         }
     }
+    
+}
+
+-(UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller{
+    
+    return UIModalPresentationNone;
+    
     
 }
 
